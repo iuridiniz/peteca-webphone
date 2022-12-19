@@ -22,7 +22,7 @@ const validateKeys = (e: KeyboardEvent) => {
   }
 
   /* apply effect in respective button */
-  const keyTransformed = e.key == "*" ? "asterisk" : e.key == "#" ? "pound" : (e.key > '0' && e.key < '9') ? e.key : 'unknown';
+  const keyTransformed = e.key == "*" ? "asterisk" : e.key == "#" ? "pound" : (e.key >= '0' && e.key <= '9') ? e.key : 'unknown';
   const button = document.querySelector(`.pw-keypad-button-${keyTransformed}`);
   if (button) {
     button.classList.add("pw-keypad-button-flash");
@@ -82,19 +82,52 @@ watch(
 </script>
 
 <template>
-  <aside style="display: none">
-    <svg xmlns="http://www.w3.org/2000/svg">
-      <symbol id="pw-svg-icon-minimize" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1em"
-        height="1em">
-        <path fill="currentColor" d="M19 13H5v-2h14Z" />
-      </symbol>
-      <symbol id="pw-svg-icon-settings" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" height="1em">
-        <path fill="currentColor"
-          d="m9.25 22l-.4-3.2q-.325-.125-.612-.3q-.288-.175-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375q.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3q.287.175.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375q-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z" />
-      </symbol>
-    </svg>
-  </aside>
   <div class="pw pw-root">
+    <aside style="display: none">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="pw-svg-icon-minimize" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19 13H5v-2h14Z" />
+        </symbol>
+        <symbol id="pw-svg-icon-settings" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="m9.25 22l-.4-3.2q-.325-.125-.612-.3q-.288-.175-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375q.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3q.287.175.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375q-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z" />
+        </symbol>
+        <symbol id="pw-svg-icon-clear" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="m11.4 16l2.6-2.6l2.6 2.6l1.4-1.4l-2.6-2.6L18 9.4L16.6 8L14 10.6L11.4 8L10 9.4l2.6 2.6l-2.6 2.6Zm-3.45 3L3 12l4.95-7H21v14ZM9 17h10V7H9l-3.55 5Zm10 0V7Z" />
+        </symbol>
+        <symbol id="pw-svg-icon-call-end" viewBox="0 0 24 24">
+          <g transform="matrix(3.728 0 0 3.7281 -154.43 -424.88)">
+            <path fill="currentColor"
+              d="m46.709 114.77-4.4809 4.4814 0.34675 0.34675c0.51692-0.51388 0.90871-0.90391 1.2501-1.2438 0.37318 0.34007 0.79221 0.61846 1.2568 0.83457 0.5401 0.25136 1.0946 0.37672 1.6635 0.37672 0.0441 0 0.0905-1e-3 0.13901-3e-3 0.0485-2e-3 0.09491-5e-3 0.13901-0.0103v-1.5482l-1.3229-0.26458-0.7674 0.76739c-0.25782-0.15605-0.49927-0.33395-0.7245-0.53433 1.4652-1.4608 1.2486-1.2558 2.8479-2.8551zm-4.4354 0.0331c-0.0088 0.0441-0.01292 0.0905-0.01292 0.13901v0.13901c0 0.56886 0.12669 1.1234 0.38034 1.6635 0.14066 0.29981 0.30669 0.58091 0.49764 0.84336l0.37827-0.37879c-0.0736-0.10296-0.14192-0.20824-0.20464-0.31575l0.75396-0.76067-0.24495-1.3296z"
+              stroke-width=".26458" />
+          </g>
+        </symbol>
+        <symbol id="pw-svg-icon-call-start" view-box="0 0 24 24">
+          <path fill="currentColor"
+            d="M19.95 21q-3.225 0-6.287-1.425q-3.063-1.425-5.425-3.8q-2.363-2.375-3.8-5.438Q3 7.275 3 4.05v-.525Q3 3.25 3.05 3H8.9l.925 5.025l-2.85 2.875q1.05 1.8 2.638 3.375Q11.2 15.85 13.1 17l2.9-2.9l5 1v5.85q-.25.025-.525.038Q20.2 21 19.95 21Z" />
+        </symbol>
+        <symbol id="pw-svg-icon-signal-full" view-box="0 0 24 24">
+          <path fill="currentColor"
+            d="M12 10C10.9 10 10 10.9 10 12S10.9 14 12 14 14 13.1 14 12 13.1 10 12 10M18 12C18 8.7 15.3 6 12 6S6 8.7 6 12C6 14.2 7.2 16.1 9 17.2L10 15.5C8.8 14.8 8 13.5 8 12.1C8 9.9 9.8 8.1 12 8.1S16 9.9 16 12.1C16 13.6 15.2 14.9 14 15.5L15 17.2C16.8 16.2 18 14.2 18 12M12 2C6.5 2 2 6.5 2 12C2 15.7 4 18.9 7 20.6L8 18.9C5.6 17.5 4 14.9 4 12C4 7.6 7.6 4 12 4S20 7.6 20 12C20 15 18.4 17.5 16 18.9L17 20.6C20 18.9 22 15.7 22 12C22 6.5 17.5 2 12 2Z" />
+        </symbol>
+        <symbol id="pw-svg-icon-tape" view-box="0 0 24 24">
+          <path fill="currentColor"
+            d="M10.83 13h2.34A3 3 0 1 1 16 15H8a3 3 0 1 1 2.83-2zM4 5v14h16V5H4zM3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm5 10a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm8 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2z" />
+        </symbol>
+        <symbol id="pw-svg-icon-missed-call" view-box="0 0 24 24">
+          <path fill="currentColor" d="M19.59,7L12,14.59L6.41,9H11V7H3V15H5V10.41L12,17.41L21,8.41" />
+        </symbol>
+        <symbol id="pw-svg-icon-incoming-call" view-box="0 0 24 24">
+          <path fill="currentColor"
+            d="m5.3301 2.6628a2.6682 2.6682 0 0 0-2.668 2.668v2c0 7.7359 6.2719 14.008 14.008 14.008h2a2.6682 2.6682 0 0 0 2.668-2.668v-1.2188c0-0.76576-0.51997-1.4333-1.2617-1.6191l-3.9355-0.98242a1.6676 1.6676 0 0 0-1.7383 0.61719l-0.86133 1.1504c-0.09072 0.12007-0.22089 0.14512-0.3125 0.11133a10.037 10.037 0 0 1-5.957-5.957c-0.033797-0.09161-0.00874-0.22267 0.11133-0.3125l1.1504-0.86133a1.6676 1.6676 0 0 0 0.61719-1.7383l-0.98242-3.9355c-0.18588-0.74175-0.85427-1.2617-1.6191-1.2617zm14.875 0c-0.49104-0.02432-0.66081 0.29851-0.84766 0.51367l-4.7344 5.0605v-4.291c-6.34e-4 -1.5945-2.2389-1.5945-2.2383 0v7.1797c0 0.66074 0.50101 1.1953 1.1191 1.1953h6.7148c0.61813 0 1.1191-0.53458 1.1191-1.1953s-0.50102-1.1973-1.1191-1.1973h-4.0137l4.6094-5.4492c0.68761-0.68494 0.38411-1.6367 2e-3 -1.6602-0.2471-0.10163-0.44765-0.14814-0.61133-0.15625z" />
+        </symbol>
+        <symbol id="pw-svg-icon-outgoing-call" view-box="0 0 24 24">
+          <path fill="currentColor"
+            d="m5.3299 2.6625a2.6682 2.6682 0 0 0-2.668 2.668v2c0 7.7359 6.2719 14.008 14.008 14.008h2a2.6682 2.6682 0 0 0 2.668-2.668v-1.2188c0-0.76576-0.51997-1.4333-1.2617-1.6191l-3.9355-0.98242a1.6676 1.6676 0 0 0-1.7383 0.61719l-0.86133 1.1504c-0.09072 0.12007-0.22089 0.14512-0.3125 0.11133a10.037 10.037 0 0 1-5.957-5.957c-0.033797-0.09161-0.00874-0.22267 0.11133-0.3125l1.1504-0.86133a1.6676 1.6676 0 0 0 0.61719-1.7383l-0.98242-3.9355c-0.18588-0.74175-0.85427-1.2617-1.6191-1.2617zm8.1879 9.6572c0.49104 0.02432 0.66081-0.29851 0.84766-0.51367l4.7344-5.0605v4.291c6.34e-4 1.5945 2.2389 1.5945 2.2383 0v-7.1797c0-0.66074-0.50101-1.1953-1.1191-1.1953h-6.7148c-0.61813 0-1.1191 0.53458-1.1191 1.1953s0.50102 1.1973 1.1191 1.1973h4.0137l-4.6094 5.4492c-0.68761 0.68494-0.38411 1.6367-2e-3 1.6602 0.2471 0.10163 0.44765 0.14814 0.61133 0.15625z" />
+        </symbol>
+      </svg>
+    </aside>
     <main class="pw-main">
       <div class="pw-app-bar">
         <div class="pw-app-bar-title">
@@ -107,7 +140,7 @@ watch(
             </svg>
           </button>
           <button class="pw-app-bar-action-button">
-            <svg class="pw-icon-minimize" width="1em" height="1em">
+            <svg class="pw-icon-settings" width="1em" height="1em">
               <use xlink:href="#pw-svg-icon-settings" />
             </svg>
           </button>
@@ -115,12 +148,20 @@ watch(
       </div>
       <div class="pw-display">
         <div class="pw-display-top">
-          <div class="pw-display-top-left">00:00</div>
+          <div class="pw-display-top-left"><span class="pw-display-text-color-unsure">0:00:00</span></div>
           <div class="pw-display-top-center"></div>
           <div class="pw-display-top-right">
             <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1em">
-              <path fill="currentColor"
-                d="M12 10C10.9 10 10 10.9 10 12S10.9 14 12 14 14 13.1 14 12 13.1 10 12 10M18 12C18 8.7 15.3 6 12 6S6 8.7 6 12C6 14.2 7.2 16.1 9 17.2L10 15.5C8.8 14.8 8 13.5 8 12.1C8 9.9 9.8 8.1 12 8.1S16 9.9 16 12.1C16 13.6 15.2 14.9 14 15.5L15 17.2C16.8 16.2 18 14.2 18 12M12 2C6.5 2 2 6.5 2 12C2 15.7 4 18.9 7 20.6L8 18.9C5.6 17.5 4 14.9 4 12C4 7.6 7.6 4 12 4S20 7.6 20 12C20 15 18.4 17.5 16 18.9L17 20.6C20 18.9 22 15.7 22 12C22 6.5 17.5 2 12 2Z" />
+              <use xlink:href="#pw-svg-icon-missed-call" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1em">
+              <use xlink:href="#pw-svg-icon-signal-full" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1em">
+              <use xlink:href="#pw-svg-icon-incoming-call" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1em">
+              <use xlink:href="#pw-svg-icon-outgoing-call" />
             </svg>
           </div>
         </div>
@@ -140,8 +181,7 @@ watch(
           <div class="pw-keypad-button-upper">1</div>
           <svg class="pw-keypad-button-lower pw-icon-tape-line" xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1em">
-            <path fill="currentColor"
-              d="M10.83 13h2.34A3 3 0 1 1 16 15H8a3 3 0 1 1 2.83-2zM4 5v14h16V5H4zM3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm5 10a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm8 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2z" />
+            <use xlink:href="#pw-svg-icon-tape" />
           </svg>
         </button>
         <button @click="keypadButtonClicked" data-value="2" class="pw-keypad-button pw-keypad-button-2">
@@ -190,26 +230,20 @@ watch(
         <button class="pw-action-button pw-action-button-call-start" :disabled="inCall" @click="callStartButtonClicked">
           <svg class="pw-icon-call-start" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24" width="1em">
-            <path fill="currentColor"
-              d="M19.95 21q-3.225 0-6.287-1.425q-3.063-1.425-5.425-3.8q-2.363-2.375-3.8-5.438Q3 7.275 3 4.05v-.525Q3 3.25 3.05 3H8.9l.925 5.025l-2.85 2.875q1.05 1.8 2.638 3.375Q11.2 15.85 13.1 17l2.9-2.9l5 1v5.85q-.25.025-.525.038Q20.2 21 19.95 21Z" />
+            <use xlink:href="#pw-svg-icon-call-start" />
           </svg>
         </button>
         <button class="pw-action-button pw-action-button-call-end" :disabled="!inCall" @click="callEndButtonClicked">
           <svg class="pw-icon-call-end" version="1.1" viewBox="0 0 24 24" width="1em"
             xmlns="http://www.w3.org/2000/svg">
-            <g transform="matrix(3.728 0 0 3.7281 -154.43 -424.88)">
-              <path fill="currentColor"
-                d="m46.709 114.77-4.4809 4.4814 0.34675 0.34675c0.51692-0.51388 0.90871-0.90391 1.2501-1.2438 0.37318 0.34007 0.79221 0.61846 1.2568 0.83457 0.5401 0.25136 1.0946 0.37672 1.6635 0.37672 0.0441 0 0.0905-1e-3 0.13901-3e-3 0.0485-2e-3 0.09491-5e-3 0.13901-0.0103v-1.5482l-1.3229-0.26458-0.7674 0.76739c-0.25782-0.15605-0.49927-0.33395-0.7245-0.53433 1.4652-1.4608 1.2486-1.2558 2.8479-2.8551zm-4.4354 0.0331c-0.0088 0.0441-0.01292 0.0905-0.01292 0.13901v0.13901c0 0.56886 0.12669 1.1234 0.38034 1.6635 0.14066 0.29981 0.30669 0.58091 0.49764 0.84336l0.37827-0.37879c-0.0736-0.10296-0.14192-0.20824-0.20464-0.31575l0.75396-0.76067-0.24495-1.3296z"
-                stroke-width=".26458" />
-            </g>
+            <use xlink:href="#pw-svg-icon-call-end" />
           </svg>
         </button>
         <button class="pw-action-button pw-action-button-clear" :disabled="!displayHasContent"
           @click="clearButtonClicked">
           <svg class="pw-icon-clear" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24" width="1em">
-            <path fill="currentColor"
-              d="m11.4 16l2.6-2.6l2.6 2.6l1.4-1.4l-2.6-2.6L18 9.4L16.6 8L14 10.6L11.4 8L10 9.4l2.6 2.6l-2.6 2.6Zm-3.45 3L3 12l4.95-7H21v14ZM9 17h10V7H9l-3.55 5Zm10 0V7Z" />
+            <use xlink:href="#pw-svg-icon-clear" />
           </svg>
         </button>
       </div>
@@ -220,8 +254,6 @@ watch(
 
 <style lang="scss">
 .pw {
-
-
   .pw-main {
     @apply pw-bg-gray-100;
     @apply pw-flex-col;
@@ -265,6 +297,10 @@ watch(
 
   .pw-display-text-color-good {
     @apply pw-text-green-400;
+  }
+
+  .pw-display-text-color-unsure {
+    @apply pw-text-yellow-300;
   }
 
   .pw-display-text-color-bad {
@@ -311,7 +347,6 @@ watch(
   }
 
   .pw-display-middle {
-
     @apply pw-text-center;
     @apply pw-w-full;
     @apply pw-text-4xl;
