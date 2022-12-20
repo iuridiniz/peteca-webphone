@@ -127,6 +127,16 @@ watch(
             d="m5.3299 2.6625a2.6682 2.6682 0 0 0-2.668 2.668v2c0 7.7359 6.2719 14.008 14.008 14.008h2a2.6682 2.6682 0 0 0 2.668-2.668v-1.2188c0-0.76576-0.51997-1.4333-1.2617-1.6191l-3.9355-0.98242a1.6676 1.6676 0 0 0-1.7383 0.61719l-0.86133 1.1504c-0.09072 0.12007-0.22089 0.14512-0.3125 0.11133a10.037 10.037 0 0 1-5.957-5.957c-0.033797-0.09161-0.00874-0.22267 0.11133-0.3125l1.1504-0.86133a1.6676 1.6676 0 0 0 0.61719-1.7383l-0.98242-3.9355c-0.18588-0.74175-0.85427-1.2617-1.6191-1.2617zm8.1879 9.6572c0.49104 0.02432 0.66081-0.29851 0.84766-0.51367l4.7344-5.0605v4.291c6.34e-4 1.5945 2.2389 1.5945 2.2383 0v-7.1797c0-0.66074-0.50101-1.1953-1.1191-1.1953h-6.7148c-0.61813 0-1.1191 0.53458-1.1191 1.1953s0.50102 1.1973 1.1191 1.1973h4.0137l-4.6094 5.4492c-0.68761 0.68494-0.38411 1.6367-2e-3 1.6602 0.2471 0.10163 0.44765 0.14814 0.61133 0.15625z" />
         </symbol>
       </svg>
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="pw-svg-icon-spinner" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-dasharray="15" stroke-dashoffset="15" stroke-linecap="round"
+            stroke-width="2" d="M12 3C16.9706 3 21 7.02944 21 12">
+            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0" />
+            <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate"
+              values="0 12 12;360 12 12" />
+          </path>
+        </symbol>
+      </svg>
     </aside>
     <main class="pw-main">
       <div class="pw-app-bar">
@@ -149,7 +159,11 @@ watch(
       <div class="pw-display">
         <div class="pw-display-top">
           <div class="pw-display-top-left"><span class="pw-display-text-color-unsure">0:00:00</span></div>
-          <div class="pw-display-top-center"></div>
+          <div class="pw-display-top-center">
+            <svg class="pw-icon-spinner" width="1em" height="1em">
+              <use xlink:href="#pw-svg-icon-spinner" />
+            </svg>
+          </div>
           <div class="pw-display-top-right">
             <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1em">
               <use xlink:href="#pw-svg-icon-missed-call" />
