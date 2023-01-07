@@ -48,10 +48,10 @@ const callEndButtonClicked = () => {
   AppState.value = 'online:idle';
 }
 
-const clearButtonClicked = () => {
+const backspaceButtonClicked = () => {
   const input = document.querySelector(".pw-display-middle") as HTMLInputElement;
   input.focus();
-  displayContent.value = "";
+  displayContent.value = displayContent.value.slice(0, -1);
 }
 
 watch(
@@ -92,7 +92,7 @@ watch(
           <path fill="currentColor"
             d="m9.25 22l-.4-3.2q-.325-.125-.612-.3q-.288-.175-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375q.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3q.287.175.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375q-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z" />
         </symbol>
-        <symbol id="pw-svg-icon-clear" viewBox="0 0 24 24">
+        <symbol id="pw-svg-icon-backspace" viewBox="0 0 24 24">
           <path fill="currentColor"
             d="m11.4 16l2.6-2.6l2.6 2.6l1.4-1.4l-2.6-2.6L18 9.4L16.6 8L14 10.6L11.4 8L10 9.4l2.6 2.6l-2.6 2.6Zm-3.45 3L3 12l4.95-7H21v14ZM9 17h10V7H9l-3.55 5Zm10 0V7Z" />
         </symbol>
@@ -253,11 +253,11 @@ watch(
             <use xlink:href="#pw-svg-icon-call-end" />
           </svg>
         </button>
-        <button class="pw-action-button pw-action-button-clear" :disabled="!displayHasContent"
-          @click="clearButtonClicked">
-          <svg class="pw-icon-clear" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
+        <button class="pw-action-button pw-action-button-backspace" :disabled="!displayHasContent"
+          @click="backspaceButtonClicked">
+          <svg class="pw-icon-backspace" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24" width="1em">
-            <use xlink:href="#pw-svg-icon-clear" />
+            <use xlink:href="#pw-svg-icon-backspace" />
           </svg>
         </button>
       </div>
@@ -477,12 +477,12 @@ watch(
 
   .pw-icon-call-start,
   .pw-icon-call-end,
-  .pw-icon-clear {
+  .pw-icon-backspace {
     @apply pw-w-full;
     @apply pw-h-12;
   }
 
-  .pw-icon-clear {
+  .pw-icon-backspace {
     @apply pw-pr-1;
   }
 }
