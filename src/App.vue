@@ -158,7 +158,7 @@ watch(
       </div>
       <div class="pw-display">
         <div class="pw-display-top">
-          <div class="pw-display-top-left"><span class="pw-display-text-color-unsure">0:00:00</span></div>
+          <div class="pw-display-top-left"><span class="pw-display-text-color-unsure">0:12:34</span></div>
           <div class="pw-display-top-center">
             <svg class="pw-icon-spinner" width="1em" height="1em">
               <use xlink:href="#pw-svg-icon-spinner" />
